@@ -1,187 +1,85 @@
-<!-- markdownlint-disable -->
+# Employee Attrition Prediction
 
-# 🧠 Employee Attrition Prediction  
-![status](https://img.shields.io/badge/Status-Active-brightgreen)  
-![python](https://img.shields.io/badge/Python-3.10-blue)  
-![sklearn](https://img.shields.io/badge/Scikit--Learn-ML%20Pipeline-orange)  
-![streamlit](https://img.shields.io/badge/Streamlit-App-red)  
-![license](https://img.shields.io/badge/License-MIT-purple)
+![Python](https://img.shields.io/badge/Python-3.10-blue?style=flat-square&logo=python)
+![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML%20Pipeline-orange?style=flat-square)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-red?style=flat-square&logo=streamlit)
+![ROC-AUC](https://img.shields.io/badge/ROC--AUC-~0.85-brightgreen?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
 
-Predicting Employee Turnover Using Machine Learning.
-
----
-
-## 📌 Executive Summary
-
-Employee attrition is one of the most expensive challenges organizations face.  
-This project delivers a complete **end-to-end machine learning workflow** to identify employees at risk of leaving.
+Identifies employees at risk of leaving using the IBM HR Analytics dataset. Includes a Streamlit app for HR teams to score employees and download risk reports.
 
 ---
 
-## 🚀 Key Features
+## Business Problem
 
-- Automated scikit-learn preprocessing pipeline  
-- ROC-AUC–based model selection  
-- Confusion Matrix, ROC Curve, and threshold metrics  
-- Streamlit batch scoring interface  
-- Reproducible, modular codebase  
-- HR-ready insights and outputs  
+Replacing an employee costs 50–200% of their annual salary. Identifying flight risks early lets HR act on retention — before a resignation letter arrives.
 
 ---
 
-## 🧱 Architecture Overview
+## Dataset
 
-
-### ASCII Diagram
-
-             ┌────────────────┐
-             │   HR Dataset   │
-             └───────┬────────┘
-                     │
-                     ▼
-      ┌────────────────────────────────┐
-      │     Preprocessing Pipeline     │
-      │ (Scaling + OneHotEncoding etc.)│
-      └───────┬────────────────────────┘
-              │
-              ▼
-     ┌─────────────────────────────────┐
-     │  Model Training (LR, RF etc.)   │
-     └───────┬─────────────────────────┘
-              │
-              ▼
- ┌────────────────────────┐
- │   Evaluation Metrics    │
- │ ROC, F1, Precision etc. │
- └────────┬───────────────┘
-          │
-          ▼
- ┌────────────────────────┐
- │ Streamlit Deployment   │
- │  Batch Attrition Risk  │
- └────────────────────────┘
+| Property | Value |
+|---|---|
+| Source | IBM HR Analytics (Kaggle) |
+| Rows | ~1,470 employees |
+| Target | Attrition (Yes / No) |
+| Class imbalance | ~16% attrition |
 
 ---
 
-## 📂 Folder Structure
+## Results
 
-```text
-employee-attrition-prediction/
-├── data/
-│   └── raw/
-│       └── hr_data.csv
-├── models/
-│   └── best_attrition_model.joblib
-├── notebooks/
-│   └── 01_eda.ipynb
-├── outputs/
-│   ├── confusion_matrix.png
-│   ├── roc_curve.png
-│   └── threshold_metrics.png
-├── src/
-│   ├── data_preprocessing.py
-│   ├── model_training.py
-│   ├── evaluate.py
-│   └── app.py
-├── requirements.txt
-└── README.md
-📊 Dataset Overview
+| Metric | Score |
+|---|---|
+| Accuracy | ~84% |
+| ROC-AUC | ~0.85 |
+| Precision | ~0.43–0.48 |
+| Recall | ~0.37–0.55 |
 
-Dataset: IBM HR Analytics Employee Attrition Dataset
-Rows: ~1470
-Target: Attrition (Yes/No)
+---
 
-Feature Categories
-Category	Examples
-Personal	Age, Gender, MaritalStatus
-Work Environment	JobRole, Department
-Performance	JobSatisfaction, JobInvolvement
-Compensation	MonthlyIncome, StockOptionLevel
-Behavioral	Overtime, DistanceFromHome
+## ML Pipeline
 
-Imbalanced dataset: ~16% attrition.
+1. Drop non-informative columns
+2. StandardScaler for numeric features
+3. OneHotEncoder for categoricals via ColumnTransformer
+4. Train Logistic Regression + Random Forest
+5. Select best by ROC-AUC
+6. Export confusion matrix, ROC curve, threshold metrics
 
-⚙️ Machine Learning Pipeline
-Preprocessing
+---
 
-Drop ID/non-informative columns
+## Quickstart
 
-StandardScaler for numeric features
-
-OneHotEncoder for categorical features
-
-Combined using ColumnTransformer
-
-Models Trained
-
-Logistic Regression
-
-Random Forest
-
-Best model selected using ROC AUC.
-
-Evaluation Artifacts
-
-Confusion Matrix
-
-ROC Curve
-
-Threshold vs Precision/Recall/F1
-
-📈 Results Summary
-Metric	Score
-Accuracy	~0.84
-Precision	~0.43–0.48
-Recall	~0.37–0.55
-ROC AUC	~0.85
-
-Interpretation:
-Random Forest provides the strongest predictive performance. Threshold tuning helps HR prioritize retention actions.
-
-🖥️ Streamlit Application
-
-Run the app:
-
-streamlit run src/app.py
-
-
-Features:
-
-Upload CSV
-
-Predict attrition probability
-
-Download scored file
-
-🧪 Reproduce the Full Pipeline
-Install dependencies
+```bash
+git clone https://github.com/deepanshu0110/employee-attrition-prediction.git
+cd employee-attrition-prediction
 pip install -r requirements.txt
-
-Train model
 python src/model_training.py
-
-Generate evaluation reports
 python src/evaluate.py
-
-Launch Streamlit
 streamlit run src/app.py
+```
 
-🔮 Future Enhancements
+---
 
-Hyperparameter tuning
+## Tech Stack
 
-SHAP explainability dashboard
+Python · Pandas · Scikit-learn · Joblib · Streamlit · Matplotlib · Seaborn
 
-FastAPI microservice
+---
 
-Power BI retention risk dashboard
+## Roadmap
 
-GitHub Actions CI/CD pipeline
+- [ ] SHAP explainability dashboard
+- [ ] FastAPI microservice
+- [ ] Hyperparameter tuning with Optuna
 
-🤝 Contributions
+---
 
-Pull requests welcome — create an issue before major changes.
+## Author
 
-📜 License
+**Deepanshu Garg** — Freelance Data Scientist
+- GitHub: [@deepanshu0110](https://github.com/deepanshu0110)
+- Hire: [freelancer.com/u/deepanshu0110](https://www.freelancer.com/u/deepanshu0110)
 
-MIT License.
+MIT License
