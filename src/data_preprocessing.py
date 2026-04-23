@@ -1,12 +1,4 @@
 
-#---
-
-## 3. `src/data_preprocessing.py`
-
-#This module centralizes how features are prepared (column selections and preprocessor).  
-#Other scripts import from here so everything stays consistent.
-
-#```python
 # src/data_preprocessing.py
 
 """
