@@ -1,4 +1,6 @@
 # Employee Attrition Prediction
+[![CI](https://github.com/deepanshu0110/employee-attrition-prediction/actions/workflows/ci.yml/badge.svg)](https://github.com/deepanshu0110/employee-attrition-prediction/actions)
+
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue?style=flat-square&logo=python)
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML%20Pipeline-orange?style=flat-square)
