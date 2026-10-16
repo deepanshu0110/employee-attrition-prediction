@@ -5,7 +5,7 @@
 ![Python](https://img.shields.io/badge/Python-3.10-blue?style=flat-square&logo=python)
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML%20Pipeline-orange?style=flat-square)
 ![Streamlit](https://img.shields.io/badge/Streamlit-App-red?style=flat-square&logo=streamlit)
-![ROC-AUC](https://img.shields.io/badge/ROC--AUC-~0.85-brightgreen?style=flat-square)
+![ROC-AUC](https://img.shields.io/badge/ROC--AUC-0.81-brightgreen?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
 
 Identifies employees at risk of leaving using the IBM HR Analytics dataset. Includes a Streamlit app for HR teams to score employees and download risk reports.
@@ -14,7 +14,7 @@ Identifies employees at risk of leaving using the IBM HR Analytics dataset. Incl
 
 ## Business Problem
 
-Replacing an employee costs 50–200% of their annual salary. Identifying flight risks early lets HR act on retention — before a resignation letter arrives.
+Replacing an employee is expensive. Identifying flight risks early lets HR act on retention before a resignation letter arrives.
 
 ---
 
@@ -31,12 +31,17 @@ Replacing an employee costs 50–200% of their annual salary. Identifying flight
 
 ## Results
 
+Best model: **Logistic Regression** (ROC-AUC 0.812, vs 0.804 for Random Forest). Test set: 294 employees, 47 of whom left.
+
 | Metric | Score |
 |---|---|
-| Accuracy | ~84% |
-| ROC-AUC | ~0.85 |
-| Precision | ~0.43–0.48 |
-| Recall | ~0.37–0.55 |
+| Accuracy | 86.1% |
+| ROC-AUC | 0.812 |
+| Precision (attrition class) | 0.62 |
+| Recall (attrition class) | 0.34 |
+| F1 (attrition class) | 0.44 |
+
+**What this means:** at the default 0.5 threshold the model catches only 16 of the 47 leavers. Accuracy looks high because 84% of employees stay. Use `outputs/threshold_metrics.png` to pick a lower threshold if missing a leaver costs more than a false alarm.
 
 ---
 
