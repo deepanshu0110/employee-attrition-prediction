@@ -69,6 +69,17 @@ streamlit run src/app.py
 
 ---
 
+## Tests
+
+```bash
+pip install pytest
+pytest tests/ -v
+```
+
+The tests trains and evaluates the model, checks ROC-AUC, and starts the Streamlit app. GitHub Actions runs them on every push.
+
+---
+
 ## Tech Stack
 
 Python · Pandas · Scikit-learn · Joblib · Streamlit · Matplotlib · Seaborn
